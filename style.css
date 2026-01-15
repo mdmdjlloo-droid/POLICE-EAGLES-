@@ -1,73 +1,40 @@
-body {
-  margin: 0;
-  font-family: Tahoma, Arial;
-  direction: rtl;
-  background: linear-gradient(135deg, #e6f7ff, #cceeff);
+.soldier-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* علامة مائية للحقوق */
-body::before {
-  content: "EAGLES";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 120px;
-  color: rgba(0, 0, 0, 0.05);
-  z-index: -1;
-  pointer-events: none;
+.soldier-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #00b4d8;
 }
 
-nav {
-  background: #0096c7;
-  padding: 15px;
-  text-align: center;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
-
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  background: rgba(255,255,255,0.95);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0,150,255,0.3);
-}
-
-h1 {
-  text-align: center;
-  color: #0077b6;
-}
-
-.text {
-  text-align: center;
-  color: #023047;
-}
-
-.list {
-  list-style: none;
-  padding: 0;
-}
-
-.list li {
-  background: #f1fbff;
-  margin: 10px 0;
-  padding: 15px;
-  border-right: 5px solid #00b4d8;
-  border-radius: 10px;
-}
-
-.footer {
-  text-align: center;
-  padding: 15px;
+.soldier-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
   background: #0096c7;
   color: white;
-  margin-top: 40px;
-  font-size: 14px;
+  cursor: pointer;
+}
+
+.soldier-box button:hover {
+  background: #0077b6;
+}
+
+#searchName {
+  flex: 1.5;
+  border: 1px solid #00b4d8;
+}
+
+.list li button {
+  float: left;
+  background: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }

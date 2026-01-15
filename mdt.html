@@ -1,0 +1,80 @@
+<!--
+© 2026 EAGLES
+MDT Police System
+All Rights Reserved
+-->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>MDT العساكر | EAGLES</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html">الرئيسية</a>
+  <a href="rules.html">القوانين</a>
+  <a href="ranks.html">الرتب</a>
+  <a href="mdt.html">MDT العساكر</a>
+</nav>
+
+<div class="container">
+<h1>📱 MDT – قائمة العساكر</h1>
+
+<div class="soldier-box">
+  <input type="text" id="soldierName" placeholder="اكتب اسم العسكري">
+  <button onclick="addSoldier()">إضافة</button>
+  <input type="text" id="searchName" placeholder="بحث عن عسكري" oninput="searchSoldiers()">
+</div>
+
+<ul id="soldierList" class="list"></ul>
+
+</div>
+
+<footer class="footer">
+© 2026 جميع الحقوق محفوظة | EAGLES
+</footer>
+
+<script>
+let soldiers = JSON.parse(localStorage.getItem("eagles_soldiers")) || [];
+
+function renderSoldiers(listToRender = soldiers) {
+  const list = document.getElementById("soldierList");
+  list.innerHTML = "";
+  listToRender.forEach((name, index) => {
+    list.innerHTML += `
+      <li>
+        ${name}
+        <button onclick="removeSoldier(${index})">❌</button>
+      </li>
+    `;
+  });
+}
+
+function addSoldier() {
+  const input = document.getElementById("soldierName");
+  if(input.value.trim() === "") return alert("اكتب اسم صحيح");
+  soldiers.push(input.value.trim());
+  localStorage.setItem("eagles_soldiers", JSON.stringify(soldiers));
+  input.value = "";
+  renderSoldiers();
+}
+
+function removeSoldier(index) {
+  soldiers.splice(index, 1);
+  localStorage.setItem("eagles_soldiers", JSON.stringify(soldiers));
+  renderSoldiers();
+}
+
+function searchSoldiers() {
+  const search = document.getElementById("searchName").value.toLowerCase();
+  const filtered = soldiers.filter(name => name.toLowerCase().includes(search));
+  renderSoldiers(filtered);
+}
+
+renderSoldiers();
+</script>
+
+</body>
+</html>

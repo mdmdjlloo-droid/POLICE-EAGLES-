@@ -1,0 +1,75 @@
+<!--
+© 2026 EAGLES
+Police System
+All Rights Reserved
+-->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>العساكر | EAGLES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html">الرئيسية</a>
+  <a href="rules.html">القوانين</a>
+  <a href="ranks.html">الرتب</a>
+  <a href="soldiers.html">العساكر</a>
+</nav>
+
+<div class="container">
+  <h1>👮‍♂️ إدارة العساكر</h1>
+
+  <div class="soldier-box">
+    <input type="text" id="soldierName" placeholder="اكتب اسم العسكري">
+    <button onclick="addSoldier()">إضافة</button>
+  </div>
+
+  <ul id="soldierList" class="list"></ul>
+</div>
+
+<footer class="footer">
+© 2026 جميع الحقوق محفوظة | EAGLES
+</footer>
+
+<script>
+let soldiers = JSON.parse(localStorage.getItem("eagles_soldiers")) || [];
+
+function renderSoldiers() {
+  const list = document.getElementById("soldierList");
+  list.innerHTML = "";
+  soldiers.forEach((name, index) => {
+    list.innerHTML += `
+      <li>
+        ${name}
+        <button onclick="removeSoldier(${index})">❌</button>
+      </li>
+    `;
+  });
+}
+
+function addSoldier() {
+  const input = document.getElementById("soldierName");
+  if (input.value.trim() === "") {
+    alert("الرجاء إدخال اسم صحيح");
+    return;
+  }
+  soldiers.push(input.value.trim());
+  localStorage.setItem("eagles_soldiers", JSON.stringify(soldiers));
+  input.value = "";
+  renderSoldiers();
+}
+
+function removeSoldier(index) {
+  soldiers.splice(index, 1);
+  localStorage.setItem("eagles_soldiers", JSON.stringify(soldiers));
+  renderSoldiers();
+}
+
+renderSoldiers();
+</script>
+
+</body>
+</html>
